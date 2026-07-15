@@ -167,6 +167,34 @@ nav.scrolled{background:rgba(5,5,5,.95);backdrop-filter:blur(10px);border-bottom
 .faq-a-inner{font-size:.85rem;color:var(--text-muted);line-height:2.1;padding-bottom:1.4rem;word-break:break-word}
 .faq-item.open .faq-a{max-height:500px}
 
+/* MYSTERY */
+#mystery{background:var(--bg);position:relative}
+#mystery::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.mys-intro{max-width:620px;margin:0 auto}
+.mys-lead{font-family:'Noto Serif JP',serif;font-size:clamp(.95rem,2.2vw,1.05rem);color:var(--cream);line-height:2.2;margin-bottom:1.6rem}
+.mys-copy{font-size:.85rem;color:var(--text-muted);line-height:2.1}
+.mys-rules{margin:2rem auto 0;text-align:left;max-width:520px}
+.mys-rule{font-size:.8rem;color:var(--text-muted);line-height:1.9;padding:.55rem 0 .55rem 1.4rem;position:relative;border-bottom:1px solid rgba(201,168,76,.08)}
+.mys-rule::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:.7rem}
+.mys-archive{max-width:620px;margin:3.5rem auto 0;text-align:left}
+.mys-archive-label{text-align:center;font-size:.75rem;letter-spacing:.25em;color:var(--gold);margin-bottom:1.2rem}
+.mys-item{border:1px solid rgba(201,168,76,.18);background:rgba(201,168,76,.03);margin-bottom:1rem}
+.mys-q{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 1.2rem;gap:1rem;text-align:left}
+.mys-q-no{font-size:.68rem;letter-spacing:.2em;color:var(--gold);display:block;margin-bottom:.3rem}
+.mys-q-title{font-family:'Noto Serif JP',serif;font-size:clamp(.9rem,2vw,1rem);color:var(--cream);font-weight:300}
+.mys-q-date{font-size:.68rem;color:var(--text-muted);flex-shrink:0}
+.mys-a{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.mys-a-inner{font-size:.82rem;color:var(--text-muted);line-height:2.15;padding:0 1.2rem 1.4rem;white-space:pre-line;word-break:break-word;border-top:1px solid rgba(201,168,76,.12);padding-top:1.2rem;margin:0 1.2rem 0;padding-left:0;padding-right:0}
+.mys-item.open .mys-a{max-height:4000px}
+.mys-item.open .mys-q-title{color:var(--gold)}
+.mys-schedule{max-width:480px;margin:3.5rem auto 0;text-align:left}
+.mys-sch-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.6rem 0;border-bottom:1px solid rgba(201,168,76,.08);font-size:.8rem}
+.mys-sch-no{color:var(--gold);letter-spacing:.1em;flex-shrink:0}
+.mys-sch-title{color:var(--cream);flex:1}
+.mys-sch-status{font-size:.68rem;color:var(--text-muted);flex-shrink:0}
+.mys-sch-status.live{color:var(--gold)}
+.mys-cta{margin-top:3.5rem}
+
 /* CTA */
 #cta{background:var(--bg-3);position:relative}
 #cta::before,#cta::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -288,6 +316,7 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
   <a href="#hero" class="nav-logo">Dress Up Party 2026</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#mystery">Mystery</a></li>
     <li><a href="#dresscode">Dress Code</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#ticket">Ticket</a></li>
@@ -302,6 +331,7 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
 
 <div class="mobile-nav" id="mobileNav">
   <a href="#about" class="mobile-link">About</a>
+  <a href="#mystery" class="mobile-link">Mystery</a>
   <a href="#dresscode" class="mobile-link">Dress Code</a>
   <a href="#menu" class="mobile-link">Menu</a>
   <a href="#ticket" class="mobile-link">Ticket</a>
@@ -368,6 +398,41 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
       <div class="highlight-title">お楽しみゲーム &amp; 景品</div>
       <p class="highlight-desc">景品が当たるお楽しみゲームを開催予定。内容は当日のお楽しみ。</p>
     </div>
+  </div>
+</section>
+
+<section id="mystery">
+  <p class="section-label reveal">Mystery</p>
+  <h2 class="reveal">Case 1025 ── 黒い招待状</h2>
+  <div class="gold-divider reveal"><span>◆</span></div>
+  <div class="mys-intro reveal">
+    <p class="mys-lead">親愛なる、招待客 諸君へ。<br>これは、Mr. X からの 挑戦状。</p>
+    <p class="mys-copy">
+      パーティー当日までの間、毎月ひとつ、謎をお届けする 連続ミステリー謎解き企画。
+      すべての謎を解き、最後の並び替えにたどり着いた方には ──
+      当日、特別な抽選券をご用意しています。
+    </p>
+    <div class="mys-rules">
+      <div class="mys-rule">全６問の謎 ＋ 最後の並び替え問題（全７回）</div>
+      <div class="mys-rule">答えを送る先は、公式LINEのみ（このページでは受け付けていません）</div>
+      <div class="mys-rule">正解された方にだけ、合言葉の【1文字】をお渡しします</div>
+      <div class="mys-rule">解答に期限はありません。途中からでも、ご参加いただけます</div>
+    </div>
+  </div>
+
+  <div class="mys-archive reveal">
+    <p class="mys-archive-label">── これまでの挑戦状 ──</p>
+    <div class="mys-list" id="mysteryList"></div>
+  </div>
+
+  <div class="mys-schedule reveal">
+    <p class="mys-archive-label">── 配信スケジュール ──</p>
+    <div id="mysterySchedule"></div>
+  </div>
+
+  <div class="mys-cta reveal">
+    <p class="mys-copy" style="margin-bottom:1.4rem">答えは、公式LINEへ。<br>あなたの挑戦を、Mr. X が待っています。</p>
+    <a href="https://lin.ee/6hyUu6b" target="_blank" class="btn-gold">公式LINEで答える</a>
   </div>
 </section>
 
@@ -632,7 +697,6 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
       <div class="staff-card"><div class="avatar-circle" style="width:60px;height:60px;font-size:.9rem">K</div><div class="staff-name" style="font-size:.9rem">KECCHI</div><div class="staff-role">Sub Staff</div></div>
       <div class="staff-card"><div class="avatar-circle" style="width:60px;height:60px;font-size:.9rem">K</div><div class="staff-name" style="font-size:.9rem">KAZMAX</div><div class="staff-role">Sub Staff</div></div>
       <div class="staff-card"><div class="avatar-circle" style="width:60px;height:60px;font-size:.9rem">A</div><div class="staff-name" style="font-size:.9rem">AYU</div><div class="staff-role">Sub Staff</div></div>
-      <div class="staff-card"><div class="avatar-circle" style="width:60px;height:60px;font-size:.9rem">N</div><div class="staff-name" style="font-size:.9rem">NAMBA</div><div class="staff-role">Sub Staff</div></div>
     </div>
   </div>
 </section>
@@ -681,6 +745,10 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
     <div class="faq-item">
       <button class="faq-q"><span class="faq-q-text">駐車場はありますか？</span><span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span></button>
       <div class="faq-a"><div class="faq-a-inner">ヒルトン名古屋の駐車場（約200台）をご利用いただけます。ご参加の方は3時間無料でご利用いただけます。当日スタッフまでお申し付けください。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span class="faq-q-text">謎解き企画の過去の問題はどこで読めますか？</span><span class="faq-arrow"><svg viewBox="0 0 10 6"><polyline points="1,1 5,5 9,1"/></svg></span></button>
+      <div class="faq-a"><div class="faq-a-inner">このページの<a href="#mystery" style="color:var(--gold)">「Case 1025 ── 黒い招待状」</a>のコーナーに、これまでの問題をすべて掲載しています。途中からでもご参加いただけます。答えは公式LINEへお送りください。</div></div>
     </div>
   </div>
 </section>
@@ -733,6 +801,183 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   });
+});
+
+/* ===== MYSTERY : Case 1025 =====
+   毎月の更新方法：
+   ① 下の MYSTERIES 配列の「▼▼ ここに追加 ▼▼」の直前に、新しい問題を1ブロック貼り付ける
+   ② git commit → push するだけ（スケジュール表示は自動で「公開中」に切り替わります）
+   ※ 未公開の問題文は絶対にここへ書かないこと（ソースは誰でも見られます） */
+const MYSTERIES = [
+  {
+    no: '挑戦状 No.01', title: '招かれざる者', date: '5月18日 配信',
+    body: `親愛なる、招待客 諸君へ。
+
+2026年 10月 25日(日)、18:00。
+ヒルトン名古屋にて、わたくしの夜会を開く。
+
+招かれた者の中に、ひとり ── "招かれざる者" が、紛れている。
+
+その者を、見抜くこと。
+それが、今宵 ── 最初の謎である。
+
+これは、Mr. X からの 挑戦状。
+６つの謎と、最後の並び替え。
+すべて 解いた者を、わたくしは お待ちしている。
+
+────────────────
+
+17:30、ヒルトン名古屋。
+
+執事は、４人の招待客を、控え室に集めた。
+夜会の開宴を前に、Mr. X との縁を、ひとりずつ
+語ってもらうためである。
+
+ピアニストは、こう語った。
+「私は若い頃、Mr. X の若き日の写真を、譲り受けたのです。
+　あの写真は今も、わが家の応接間に、飾ってあります」
+
+伯爵は、ステッキを、軽く 鳴らした。
+「私の祖父は、Mr. X とは、商売仲間でございました。
+　その縁で、祖父の遺品を、数点 受け継いでおります」
+
+令嬢は、扇を、たたんだ。
+「私の祖母は、Mr. X の妹と、長く 文通をしておりました。
+　幼い頃、その手紙を、私もいくつか、読みました」
+
+探偵は、葉巻を、置いた。
+「Mr. X ご本人から、一通の手紙を受け、この夜会に参りました。
+　手紙は、ここに ── 」
+
+執事は、深く 頷き、それから ── 静かに、言った。
+
+「ところで ── Mr. X には、ご兄弟は、おられません。
+　お父様の代から、一族には、彼 ひとり しか、おりませんでした」
+
+控え室に、沈黙が、落ちた。
+
+────────────────
+
+【 第 １ の 問 い 】
+
+４人のうち、Mr. X との縁を、嘘で 語った者の名を、答えよ。
+
+答えは、すでに ── ここに ある。
+あなたが、それを 見つけるか、否か。
+
+────────────────
+
+答えは、公式LINEへ ── 人物名のみで。
+正解された方にだけ、合言葉の【1文字】を、お渡しします。
+
+そして、この者の "影" は、
+これより、夜会の各所に、現れることになる。
+
+── Mr. X`
+  },
+  {
+    no: '挑戦状 No.02', title: '消えた一脚のグラス', date: '6月18日 配信',
+    body: `親愛なる、招待客 諸君へ。
+
+夜会の日まで、残すところ ４か月余り。
+第一の謎は、解かれたであろうか。
+
+今宵、第二の謎を、お預けする。
+
+────────────────
+
+18:30、ヒルトン名古屋。
+食事の鐘が、まさに 鳴ろうとしていた。
+
+執事は、ホストの席の前に置かれた、
+一脚 の クリスタルグラスを、確かめていた。
+
+Mr. X が、夜会で 自ら手にする、唯一の グラス。
+深紅の宝石が、台座に埋め込まれた、特別な一品。
+
+ところが ── そのグラスが、消えていた。
+
+執事は、たった 15分前 ── 18:15 に、確かに見ていた。
+つまり 18:15 から 18:30 の間に、
+誰かが、そのグラスを、持ち去ったのである。
+
+執事は、４人の招待客に、目を向けた。
+
+ピアニストは、17:30 から ピアノを弾き続けていた。
+休憩は、18:30 の合図まで、入っていない。
+多くの招待客が、その音を、確かに 聞いていた。
+
+伯爵は、18:10 に、ホストの席の前を、通った。
+「Mr. X に、ご挨拶をしようかと思ったのだ」と言う。
+しかし、ホストの席には、まだ Mr. X は おらず、
+伯爵は、すぐに 自分のテーブルへ戻った。
+その時刻、ちょうど 18:15。
+
+令嬢は、18:00 からテラスで、夜風に当たっていた。
+給仕の若い男が、18:20 にカクテルを 運んでおり、
+令嬢は その間、テラスから 一歩も動いていない。
+
+探偵は、大広間の隅で、葉巻を 燻らせていた。
+両手は ずっと、葉巻と銀のライターを 握っていたという。
+17:45 から 18:30 まで、その姿勢は、変わらなかった。
+
+執事は、４人を、見渡した。
+
+「グラスを持ち去ったのは ── どなたでしょう」
+
+────────────────
+
+【 第 ２ の 問 い 】
+
+クリスタルグラスを 持ち去った者の名を、答えよ。
+
+答えは、すでに ── ここに ある。
+あなたが、それを 見つけるか、否か。
+
+────────────────
+
+答えは、公式LINEへ ── 人物名のみで。
+正解された方にだけ、合言葉の【1文字】を、お渡しします。
+
+消えたグラスは ── まだ、見つかっていない。
+そして、Mr. X は ── 今宵も、姿を見せなかった。
+
+── Mr. X`
+  },
+  /* ▼▼ ここに追加 ▼▼ */
+];
+
+const MYSTERY_SCHEDULE = [
+  { no: '第１問', date: '5月18日' },
+  { no: '第２問', date: '6月18日' },
+  { no: '第３問', date: '7月18日' },
+  { no: '第４問', date: '8月18日' },
+  { no: '第５問', date: '9月18日' },
+  { no: '第６問', date: '10月15日' },
+  { no: '最終問', date: '10月20日（並び替え）' },
+];
+
+const mysList = document.getElementById('mysteryList');
+MYSTERIES.forEach(m => {
+  const item = document.createElement('div');
+  item.className = 'mys-item';
+  item.innerHTML = `<button class="mys-q"><span><span class="mys-q-no">${m.no}</span><span class="mys-q-title">── ${m.title} ──</span></span><span class="mys-q-date">${m.date}</span></button><div class="mys-a"><div class="mys-a-inner"></div></div>`;
+  item.querySelector('.mys-a-inner').textContent = m.body;
+  item.querySelector('.mys-q').addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.mys-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+  mysList.appendChild(item);
+});
+
+const mysSch = document.getElementById('mysterySchedule');
+MYSTERY_SCHEDULE.forEach((s, i) => {
+  const released = i < MYSTERIES.length;
+  const row = document.createElement('div');
+  row.className = 'mys-sch-row';
+  row.innerHTML = `<span class="mys-sch-no">${s.no}</span><span class="mys-sch-title">${released ? '「' + MYSTERIES[i].title + '」' : '？？？'}</span><span class="mys-sch-status${released ? ' live' : ''}">${s.date}${released ? ' ─ 公開中' : ''}</span>`;
+  mysSch.appendChild(row);
 });
 
 // Share button
