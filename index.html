@@ -131,6 +131,9 @@ nav.scrolled{background:rgba(5,5,5,.95);backdrop-filter:blur(10px);border-bottom
 .pricing-card:hover{border-color:rgba(201,168,76,.45)}
 .pricing-card.featured{border-color:var(--gold)}
 .featured-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:.56rem;letter-spacing:.2em;padding:.3rem 1rem;text-transform:uppercase;white-space:nowrap}
+.pricing-card.ended{opacity:.45;border-style:dashed}
+.pricing-card.ended .price-value{text-decoration:line-through;text-decoration-color:rgba(201,168,76,.5)}
+.ended-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:rgba(120,120,120,.25);color:var(--text-muted);border:1px solid rgba(120,120,120,.3);font-size:.56rem;letter-spacing:.2em;padding:.3rem 1rem;white-space:nowrap}
 .pricing-title{font-family:'Playfair Display','Noto Serif JP',serif;font-size:1rem;color:var(--cream);font-weight:400;margin-bottom:1rem}
 .pricing-sub{font-size:.7rem;color:var(--text-muted);margin-bottom:1rem;margin-top:-.6rem}
 .price-row{display:flex;justify-content:space-between;align-items:baseline;padding:.55rem 0;border-bottom:1px solid rgba(201,168,76,.06);gap:.5rem}
@@ -557,19 +560,22 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
   <h2 class="reveal">参加費のご案内</h2>
   <div class="gold-divider reveal"><span>◆</span></div>
   <div class="pricing-grid reveal">
-    <div class="pricing-card">
-      <div class="pricing-title">通常料金</div>
+    <div class="pricing-card featured">
+      <div class="featured-badge">Current</div>
+      <div class="pricing-title">現在の料金</div>
+      <div class="pricing-sub">7月以降のお申込み</div>
       <div class="price-row"><span class="price-label">ビジター</span><span class="price-value">¥25,000<small> 税込</small></span></div>
       <div class="price-row"><span class="price-label">会員（スクール生）</span><span class="price-value">¥23,000<small> 税込</small></span></div>
     </div>
-    <div class="pricing-card featured">
-      <div class="featured-badge">Early Bird</div>
+    <div class="pricing-card ended">
+      <div class="ended-badge">受付終了</div>
       <div class="pricing-title">早期割引 — 第1弾</div>
       <div class="pricing-sub">3月末までのお申込み</div>
       <div class="price-row"><span class="price-label">ビジター</span><span class="price-value">¥22,000<small> 税込</small></span></div>
       <div class="price-row"><span class="price-label">スクール生</span><span class="price-value">¥20,000<small> 税込</small></span></div>
     </div>
-    <div class="pricing-card">
+    <div class="pricing-card ended">
+      <div class="ended-badge">受付終了</div>
       <div class="pricing-title">早期割引 — 第2弾</div>
       <div class="pricing-sub">6月末までのお申込み</div>
       <div class="price-row"><span class="price-label">ビジター</span><span class="price-value">¥23,000<small> 税込</small></span></div>
@@ -583,9 +589,9 @@ footer p{font-size:.72rem;color:var(--text-muted);letter-spacing:.1em}
     <p class="cashback-note">※ 2名以上お誘いいただいた場合、最大 ¥2,000 まで割引適用</p>
   </div>
   <div class="best-price-box reveal">
-    <div class="best-price-label">最大割引適用時（3月末まで ＋ お誘い割）</div>
-    <div class="best-price-row"><span class="type">ビジター</span><span class="amount">¥19,000</span></div>
-    <div class="best-price-row"><span class="type">スクール生</span><span class="amount">¥18,000</span></div>
+    <div class="best-price-label">お誘い合わせ割引 適用時（2名以上お誘いの場合）</div>
+    <div class="best-price-row"><span class="type">ビジター</span><span class="amount">¥23,000</span></div>
+    <div class="best-price-row"><span class="type">スクール生</span><span class="amount">¥21,000</span></div>
   </div>
   <div class="cancel-section reveal">
     <div class="cancel-title">Cancellation Policy</div>
