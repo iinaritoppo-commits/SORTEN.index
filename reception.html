@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0b09">
+<title>SORTEN Dress Up Party ｜ 受付</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0b09; --panel:#16130f; --gold:#c9a961; --line:rgba(201,169,97,.28);
+  --text:#eee4cd; --muted:#a99c80;
+  --ok:#1f8a4c; --used:#c0392b; --warn:#d4a017; --none:#5d5a55;
+  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);line-height:1.7;min-height:100vh;
+  font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding:28px 16px 40px}
+.brand{text-align:center;font-family:var(--latin);letter-spacing:.24em;color:var(--gold);font-size:13px;margin-bottom:18px}
+
+/* 受付スタッフ用の判定カード */
+.card{border-radius:4px;padding:30px 20px 26px;text-align:center;color:#fff}
+.card .big{font-size:34px;font-weight:600;letter-spacing:.1em;line-height:1.3}
+.card .name{font-size:26px;margin-top:14px}
+.card .seat{font-family:var(--latin);font-size:64px;line-height:1;margin-top:10px}
+.card .seat small{display:block;font-family:var(--serif);font-size:14px;opacity:.85;margin-top:6px}
+.card .note{font-size:14px;margin-top:14px;opacity:.92}
+.ok{background:var(--ok)} .used{background:var(--used)} .none{background:var(--none)} .wait{background:var(--panel);border:1px solid var(--line);color:var(--muted)}
+.pay{margin-top:12px;background:var(--warn);color:#1a1405;border-radius:4px;padding:10px 14px;font-weight:600;text-align:center}
+.hint{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
+.staff{margin-top:26px;font-size:11px;color:#6d6452;text-align:center}
+
+/* ゲストが自分のQRを読んだとき */
+.guest{border:1px solid var(--gold);padding:30px 20px;text-align:center;position:relative}
+.guest:before{content:"";position:absolute;inset:5px;border:1px solid var(--line);pointer-events:none}
+.guest h1{font-family:var(--latin);font-weight:600;font-size:30px;color:#f3e7c8;line-height:1.2}
+.guest p{font-size:15px;margin-top:16px}
+.guest .sub{font-size:13px;color:var(--muted)}
+.btn{display:block;margin:22px auto 0;max-width:300px;padding:14px 10px;background:var(--gold);color:#16120b;
+  text-decoration:none;font-weight:600;letter-spacing:.12em;position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">DRESS UP PARTY ／ 2026.10.25</div>
+  <div id="view"></div>
+</div>
+<script>
+// 受付用Webアプリ（Apps Script）のURL。デプロイ後にここへ入れる
+const EXEC_URL = "__EXEC_URL__";
+const view = document.getElementById("view");
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+// 受付スマホの登録：reception.html#staff=キー を一度開くと、この端末が受付用になる
+function staffKey(){
+  const m = location.hash.match(/staff=([0-9a-f]+)/);
+  try {
+    if (m) { localStorage.setItem("dup_staff", m[1]); history.replaceState(null, "", location.pathname + location.search); }
+    return localStorage.getItem("dup_staff");
+  } catch (e) { return m ? m[1] : null; }
+}
+
+function guestView(){
+  view.innerHTML = `<div class="guest">
+    <h1>Welcome</h1>
+    <p>ようこそ、お越しくださいました。<br>当日は受付で、この招待状の画面をご提示ください。</p>
+    <p class="sub">10月25日（日）17:30 受付開始<br>ヒルトン名古屋 ONE O FIVE</p>
+    <p class="sub">席次・プログラムは、会場のスクリーンに映すQRからご覧いただけます。</p>
+  </div>`;
+}
+
+function show(r){
+  const seat = r.seat ? `<div class="seat">${esc(r.seat)}<small>テーブル${esc(String(r.seat).split("-")[0])}へご案内</small></div>` : "";
+  const pay = r.payment === "未入金" ? `<div class="pay">未入金の方です。お名前を名簿担当へ</div>` : "";
+  const map = {
+    ok:     ["ok",   "入場OK",     `<div class="name">${esc(r.name)} 様</div>${seat}<div class="note">${esc(r.time)} に入場を記録しました</div>`],
+    used:   ["used", "使用済み",   `<div class="name">${esc(r.name)} 様</div>${seat}<div class="note">${esc(r.time)} に入場済みです。ご本人なら通してOK。別の方の可能性があればEIKOへ</div>`],
+    cancel: ["none", "キャンセル", `<div class="name">${esc(r.name)} 様</div><div class="note">台帳でキャンセル扱いの招待状です。お名前を伺って名簿担当へ</div>`],
+    invalid:["none", "無効",       `<div class="note">台帳にない招待状です。お名前を伺って、名前で受付（方法B）をしてください</div>`],
+    error:  ["none", "通信エラー", `<div class="note">記録できませんでした。名前で受付（方法B）をしてください</div>`]
+  };
+  const [cls, big, body] = map[r.status] || map.error;
+  view.innerHTML = `<div class="card ${cls}"><div class="big">${big}</div>${body}</div>${pay}
+    <div class="hint">次のゲストのQRを、カメラで読み取ってください</div>
+    <div class="staff">受付用の端末として登録済み</div>`;
+}
+
+function check(token, key){
+  view.innerHTML = `<div class="card wait"><div class="big">確認中…</div></div>`;
+  if (!/^https:/.test(EXEC_URL)) { show({status:"error"}); return; }
+  const cb = "cb" + Date.now();
+  const s = document.createElement("script");
+  const timer = setTimeout(() => show({status:"error"}), 15000);
+  window[cb] = r => { clearTimeout(timer); delete window[cb]; s.remove(); r.status === "guest" ? guestView() : show(r); };
+  s.onerror = () => { clearTimeout(timer); show({status:"error"}); };
+  s.src = `${EXEC_URL}?t=${encodeURIComponent(token)}&k=${encodeURIComponent(key)}&callback=${cb}`;
+  document.body.appendChild(s);
+}
+
+const token = new URLSearchParams(location.search).get("t");
+const key = staffKey();
+if (!key) guestView();
+else if (!token) view.innerHTML = `<div class="card wait"><div class="big">受付準備OK</div><div class="note">この端末は受付用に登録されました。<br>招待状のQRをカメラで読み取ってください。</div></div>`;
+else check(token, key);
+</script>
+</body>
+</html>
