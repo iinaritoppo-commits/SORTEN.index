@@ -52,7 +52,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);line-height
 </div>
 <script>
 // 受付用Webアプリ（Apps Script）のURL。デプロイ後にここへ入れる
-const EXEC_URL = "__EXEC_URL__";
+const EXEC_URL = "https://script.google.com/macros/s/AKfycbxWsfIWWhyPOpCKbZ5ANjo4TZn_zJXciMNqoxdEJlT635HT791QATFoS54aCQtPqI3_SQ/exec";
 const view = document.getElementById("view");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
@@ -74,7 +74,15 @@ function guestView(){
   </div>`;
 }
 
+// 入場時刻は「17:42」の形にそろえる
+function hhmm(v){
+  if (/^\d{1,2}:\d{2}$/.test(v || "")) return v;
+  const d = new Date(v);
+  return isNaN(d) ? (v || "") : d.toLocaleTimeString("ja-JP", {timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit"});
+}
+
 function show(r){
+  r.time = hhmm(r.time);
   const seat = r.seat ? `<div class="seat">${esc(r.seat)}<small>テーブル${esc(String(r.seat).split("-")[0])}へご案内</small></div>` : "";
   const pay = r.payment === "未入金" ? `<div class="pay">未入金の方です。お名前を名簿担当へ</div>` : "";
   const map = {
