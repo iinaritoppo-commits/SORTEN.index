@@ -8,37 +8,38 @@
 <title>SORTEN Dress Up Party ｜ 受付</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0d0b09; --panel:#16130f; --gold:#c9a961; --line:rgba(201,169,97,.28);
   --text:#eee4cd; --muted:#a99c80;
   --ok:#1f8a4c; --used:#c0392b; --warn:#d4a017; --none:#5d5a55;
-  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
-  --latin:"Cormorant Garamond","Times New Roman",serif;
+  --serif:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --latin:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:var(--serif);line-height:1.7;min-height:100vh;
+body{background:var(--bg);color:var(--text);font-family:var(--serif);font-weight:500;line-height:1.7;min-height:100vh;
   font-variant-numeric:lining-nums;-webkit-font-smoothing:antialiased}
 .wrap{max-width:520px;margin:0 auto;padding:28px 16px 40px}
 .brand{text-align:center;font-family:var(--latin);letter-spacing:.24em;color:var(--gold);font-size:13px;margin-bottom:18px}
 
 /* 受付スタッフ用の判定カード */
 .card{border-radius:4px;padding:30px 20px 26px;text-align:center;color:#fff}
-.card .big{font-size:34px;font-weight:600;letter-spacing:.1em;line-height:1.3}
-.card .name{font-size:26px;margin-top:14px}
-.card .seat{font-family:var(--latin);font-size:64px;line-height:1;margin-top:10px}
+.card .big{font-size:36px;font-weight:900;letter-spacing:.1em;line-height:1.3}
+.card .name{font-size:26px;font-weight:700;margin-top:14px}
+.card .seat{font-family:var(--latin);font-weight:900;font-size:68px;line-height:1;margin-top:10px}
 .card .seat small{display:block;font-family:var(--serif);font-size:14px;opacity:.85;margin-top:6px}
-.card .note{font-size:14px;margin-top:14px;opacity:.92}
+.card .note{font-size:16px;font-weight:700;margin-top:14px}
 .ok{background:var(--ok)} .used{background:var(--used)} .none{background:var(--none)} .wait{background:var(--panel);border:1px solid var(--line);color:var(--muted)}
-.pay{margin-top:12px;background:var(--warn);color:#1a1405;border-radius:4px;padding:10px 14px;font-weight:600;text-align:center}
-.hint{margin-top:18px;font-size:13px;color:var(--muted);text-align:center}
+.pay{margin-top:12px;background:var(--warn);color:#1a1405;border-radius:4px;padding:12px 14px;font-weight:900;font-size:16px;text-align:center}
+.hint{margin-top:16px;border:1px solid var(--line);border-radius:6px;padding:14px 16px;font-size:16px;font-weight:700;color:var(--text);text-align:center;line-height:1.6}
+.hint small{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:4px}
 .staff{margin-top:26px;font-size:11px;color:#6d6452;text-align:center}
 
 /* ゲストが自分のQRを読んだとき */
 .guest{border:1px solid var(--gold);padding:30px 20px;text-align:center;position:relative}
 .guest:before{content:"";position:absolute;inset:5px;border:1px solid var(--line);pointer-events:none}
-.guest h1{font-family:var(--latin);font-weight:600;font-size:30px;color:#f3e7c8;line-height:1.2}
+.guest h1{font-family:var(--latin);font-weight:900;font-size:30px;color:#f3e7c8;line-height:1.2}
 .guest p{font-size:15px;margin-top:16px}
 .guest .sub{font-size:13px;color:var(--muted)}
 .btn{display:block;margin:22px auto 0;max-width:300px;padding:14px 10px;background:var(--gold);color:#16120b;
@@ -94,7 +95,7 @@ function show(r){
   };
   const [cls, big, body] = map[r.status] || map.error;
   view.innerHTML = `<div class="card ${cls}"><div class="big">${big}</div>${body}</div>${pay}
-    <div class="hint">次のゲストのQRを、カメラで読み取ってください</div>
+    <div class="hint">次の方が来たら、もう一度スマホのカメラでQRを読んでください<small>この画面はそのままでOK。カメラアプリに切り替えて読むだけです</small></div>
     ${key ? `<div class="staff">受付用の端末として登録済み</div>` : ""}`;
 }
 
