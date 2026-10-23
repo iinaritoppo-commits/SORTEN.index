@@ -52,9 +52,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);font-weight
 .cam{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column}
 .cam[hidden]{display:none}
 .cam video{flex:1;width:100%;object-fit:cover;min-height:0}
-.cam .frame{position:absolute;left:50%;top:42%;width:68vw;max-width:300px;aspect-ratio:1;transform:translate(-50%,-50%);
+.cam .frame{position:absolute;left:50%;top:42%;width:56vw;max-width:260px;aspect-ratio:1;transform:translate(-50%,-50%);
   border:4px solid var(--gold);border-radius:16px;box-shadow:0 0 0 2000px rgba(0,0,0,.45)}
-.cam .msg{position:absolute;left:0;right:0;top:calc(42% + min(34vw,150px) + 18px);text-align:center;color:#fff;font-weight:700;font-size:17px}
+.cam .msg{position:absolute;left:0;right:0;top:calc(42% + min(28vw,130px) + 18px);text-align:center;color:#fff;font-weight:700;font-size:17px}
 .cam .close{margin:16px;padding:16px;border:0;border-radius:8px;background:#2a2620;color:#fff;font:inherit;font-weight:700;font-size:18px}
 </style>
 </head>
@@ -63,7 +63,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);font-weight
   <div class="brand">DRESS UP PARTY ／ 2026.10.25</div>
   <div id="view"></div>
 </div>
-<div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="frame"></div><div class="msg" id="camMsg">招待状のQRを枠に合わせてください</div><button class="close" id="camClose">閉じる</button></div>
+<div class="cam" id="cam" hidden><video id="video" playsinline muted></video><div class="frame"></div><div class="msg" id="camMsg">QRから20cmほど離して、枠に合わせてください</div><button class="close" id="camClose">閉じる</button></div>
 <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
 <script>
 // 受付用Webアプリ（Apps Script）のURL。デプロイ後にここへ入れる
@@ -162,12 +162,40 @@ const cam = document.getElementById("cam"), video = document.getElementById("vid
 const canvas = document.createElement("canvas"), ctx = canvas.getContext("2d", {willReadFrequently: true});
 if ("BarcodeDetector" in window) { try { detector = new BarcodeDetector({formats: ["qr_code"]}); } catch (e) {} }
 
+
+// 背面のメインカメラを選ぶ（Galaxyなどは広角カメラが選ばれてピントが合わないことがある）
+const HQ = {width: {ideal: 1920}, height: {ideal: 1080}};
+async function startCamera(){
+  let st = await navigator.mediaDevices.getUserMedia({video: Object.assign({facingMode: {ideal: "environment"}}, HQ), audio: false});
+  try {
+    const cams = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "videoinput");
+    const back = cams.filter(d => /back|rear|environment|背面|外側/i.test(d.label));
+    // Androidのメイン背面カメラは「camera2 0」「camera 0」のような名前が多い
+    const main = back.find(d => /\b0\b/.test(d.label)) || back[0];
+    const cur = st.getVideoTracks()[0].getSettings().deviceId;
+    if (main && main.deviceId && main.deviceId !== cur) {
+      st.getTracks().forEach(t => t.stop());
+      st = await navigator.mediaDevices.getUserMedia({video: Object.assign({deviceId: {exact: main.deviceId}}, HQ), audio: false});
+    }
+  } catch (e) {}
+  return st;
+}
+// ピントを合わせ続ける＋少しズーム（離して構えても読めるように）
+async function tuneTrack(track){
+  if (!track || !track.getCapabilities) return;
+  const caps = track.getCapabilities(), adv = {};
+  if (caps.focusMode && caps.focusMode.includes("continuous")) adv.focusMode = "continuous";
+  if (caps.zoom) adv.zoom = Math.min(caps.zoom.max, Math.max(caps.zoom.min, 1.8));
+  if (Object.keys(adv).length) { try { await track.applyConstraints({advanced: [adv]}); } catch (e) {} }
+}
+
 async function openScanner(){
   cam.hidden = false;
-  document.getElementById("camMsg").textContent = "招待状のQRを枠に合わせてください";
+  document.getElementById("camMsg").textContent = "QRから20cmほど離して、枠に合わせてください";
   try {
-    stream = await navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}, audio: false});
+    stream = await startCamera();
     video.srcObject = stream; await video.play();
+    tuneTrack(stream.getVideoTracks()[0]);
     scanning = true; requestAnimationFrame(loop);
   } catch (e) {
     document.getElementById("camMsg").textContent = "カメラを使えませんでした。カメラの許可を確認するか、カメラアプリで読んでください";
