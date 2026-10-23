@@ -4,186 +4,211 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0d0b09">
+<meta name="theme-color" content="#0f0d0a">
 <title>SORTEN Dress Up Party ｜ 本日のご案内</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho+B1:wght@700;800&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
 <style>
+/* 暗い会場でも読めるように：本文は太めのゴシック、明暗差を大きく、文字は16px以上 */
 :root{
-  --bg:#0d0b09; --panel:#16130f; --panel2:#1d1913;
-  --gold:#c9a961; --gold-d:#8c7443; --line:rgba(201,169,97,.28);
-  --text:#eee4cd; --muted:#a99c80;
-  --serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
-  --latin:"Cormorant Garamond","Times New Roman",serif;
+  --bg:#0f0d0a; --card:#1c1812; --card2:#262017;
+  --gold:#e2c27a; --gold-deep:#b8964f; --line:rgba(226,194,122,.38);
+  --text:#fbf6ea; --sub:#d6cab0; --dim:#a89a7c;
+  --ok:#2e9e5e;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Noto Sans JP",sans-serif;
+  --mincho:"Shippori Mincho B1","Hiragino Mincho ProN",serif;
+  --latin:"Cormorant Garamond",serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:64px}
-body{font-variant-numeric:lining-nums;background:var(--bg);color:var(--text);font-family:var(--serif);line-height:1.75;
-  -webkit-font-smoothing:antialiased;
-  background-image:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(201,169,97,.12),transparent 70%)}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:500;font-size:17px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom));
+  background-image:radial-gradient(ellipse 90% 30% at 50% 0%,rgba(226,194,122,.16),transparent 70%)}
 a{color:inherit}
-.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.wrap{max-width:540px;margin:0 auto;padding:0 16px}
 
-/* ---- hero ---- */
-.hero{text-align:center;padding:44px 0 30px}
-.emblem{width:46px;height:46px;margin:0 auto 16px;border:1px solid var(--gold);border-radius:50%;
-  display:grid;place-items:center}
-.emblem i{width:14px;height:14px;border:1px solid var(--gold);transform:rotate(45deg);display:block}
-.eyebrow{font-family:var(--latin);font-style:italic;letter-spacing:.32em;color:var(--gold);font-size:14px}
-.hero h1{font-family:var(--latin);font-weight:600;font-size:34px;letter-spacing:.04em;line-height:1.2;margin:6px 0 4px;color:#f3e7c8}
-.hero .sub{font-family:var(--latin);font-style:italic;color:var(--gold);font-size:17px}
-.rule{display:flex;align-items:center;gap:10px;justify-content:center;margin:18px auto;max-width:220px}
-.rule:before,.rule:after{content:"";flex:1;height:1px;background:var(--line)}
-.rule b{width:6px;height:6px;background:var(--gold);transform:rotate(45deg)}
-.hero .meta{font-size:13px;color:var(--muted);letter-spacing:.08em}
+/* ヘッダー */
+.hero{text-align:center;padding:30px 0 6px}
+.hero .en{font-family:var(--latin);font-style:italic;font-size:17px;letter-spacing:.2em;color:var(--gold)}
+.hero h1{font-family:var(--mincho);font-weight:800;font-size:30px;line-height:1.3;letter-spacing:.04em;margin-top:4px}
+.hero p{font-size:15px;color:var(--sub);margin-top:6px}
 
-/* ---- tabs ---- */
-nav{position:sticky;top:0;z-index:10;background:rgba(13,11,9,.92);backdrop-filter:blur(8px);
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-nav .wrap{display:flex}
-nav a{flex:1;text-align:center;text-decoration:none;font-size:13px;padding:13px 0;letter-spacing:.12em;color:var(--muted)}
-nav a.on{color:var(--gold)}
+/* いま何の時間か（当日だけ表示） */
+.now{margin:18px 0 4px;background:var(--gold);color:#1a140a;border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px}
+.now[hidden]{display:none}
+.now .lbl{font-weight:900;font-size:13px;letter-spacing:.14em;border:2px solid #1a140a;border-radius:6px;padding:2px 8px;flex:none}
+.now .what{font-weight:900;font-size:19px;line-height:1.35}
+.now .what small{display:block;font-weight:700;font-size:14px;opacity:.8}
 
-section{padding:40px 0 8px}
-.sec-head{text-align:center;margin-bottom:22px}
-.sec-head .en{font-family:var(--latin);letter-spacing:.3em;color:var(--gold);font-size:13px}
-.sec-head h2{font-weight:600;font-size:22px;letter-spacing:.14em}
+section{padding:30px 0 6px}
+.h2{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.h2 h2{font-family:var(--mincho);font-weight:800;font-size:24px;letter-spacing:.06em}
+.h2 span{font-family:var(--latin);font-style:italic;color:var(--gold);font-size:16px;letter-spacing:.12em}
 
-/* ---- vote ---- */
-.vote{border:1px solid var(--gold);padding:26px 20px 22px;text-align:center;position:relative;
-  background:linear-gradient(180deg,rgba(201,169,97,.09),rgba(201,169,97,0))}
-.vote:before{content:"";position:absolute;inset:5px;border:1px solid var(--line);pointer-events:none}
-.vote .en{font-family:var(--latin);letter-spacing:.3em;color:var(--gold);font-size:13px}
-.vote h2{font-size:24px;letter-spacing:.12em;margin:4px 0 2px}
-.vote p{font-size:13px;color:var(--muted)}
-.deadline{font-family:var(--latin);font-size:40px;color:var(--gold);line-height:1.1;margin:10px 0 2px}
-.btn{display:block;margin:18px auto 0;max-width:320px;padding:15px 10px;background:var(--gold);color:#16120b;
-  text-decoration:none;font-weight:600;letter-spacing:.14em;font-size:16px;position:relative;z-index:1}
-.btn:active{opacity:.85}
-.vote.closed .btn{background:transparent;color:var(--muted);border:1px solid var(--line);pointer-events:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
 
-/* ---- seats ---- */
-.search{display:flex;border:1px solid var(--line);background:var(--panel)}
-.search input{flex:1;min-width:0;background:transparent;border:0;color:var(--text);font:inherit;font-size:16px;padding:13px 14px;outline:none}
-.search input::placeholder{color:#76694f}
-.found{margin-top:12px;min-height:0}
-.hit{border-left:2px solid var(--gold);background:var(--panel);padding:10px 14px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
-.hit b{font-weight:600}
-.hit span{font-family:var(--latin);color:var(--gold);font-size:19px;letter-spacing:.06em}
-.nohit{font-size:13px;color:var(--muted);padding:6px 2px}
+/* 席 */
+.search{display:flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:4px 6px 4px 16px}
+.search svg{flex:none}
+.search input{flex:1;min-width:0;border:0;outline:none;background:transparent;font:inherit;font-weight:700;font-size:19px;color:#1a140a;padding:12px 0}
+.search input::placeholder{color:#8a8070;font-weight:500}
+.hits{margin-top:12px;display:grid;gap:8px}
+.hit{display:flex;justify-content:space-between;align-items:center;background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;cursor:pointer}
+.hit b{font-weight:700;font-size:18px}
+.hit span{font-weight:900;font-size:26px;color:var(--gold);letter-spacing:.04em}
+.nohit{color:var(--sub);font-size:15px;padding:4px 2px}
+.mine{margin-top:12px;background:var(--gold);color:#1a140a;border-radius:14px;padding:16px 18px;text-align:center}
+.mine .who{font-weight:700;font-size:17px}
+.mine .seat{font-weight:900;font-size:56px;line-height:1.05;letter-spacing:.02em;margin-top:2px}
+.mine .tbl{font-weight:700;font-size:16px}
 
-.floor{margin-top:20px;border:1px solid var(--line);padding:14px 12px 12px;background:var(--panel)}
-.floor-top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px}
-.floor-body{display:flex;gap:10px;align-items:stretch}
-.grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 8px}
-.tbl{aspect-ratio:1;border-radius:50%;border:1px solid var(--gold-d);background:var(--panel2);
-  display:grid;place-items:center;font-family:var(--latin);font-size:26px;color:var(--gold);cursor:pointer;
-  max-width:78px;width:100%;margin:0 auto;transition:.2s}
-.tbl.on{background:var(--gold);color:#16120b;border-color:var(--gold)}
-.stage{writing-mode:vertical-rl;border:1px solid var(--line);font-family:var(--latin);letter-spacing:.4em;
-  font-size:12px;color:var(--gold);display:grid;place-items:center;padding:6px 4px}
-.floor-note{font-size:11px;color:var(--muted);text-align:center;margin-top:10px}
+.floor{margin-top:14px;padding:14px}
+.floor-top{display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:var(--sub);margin-bottom:10px}
+.floor-body{display:flex;gap:10px}
+.grid{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tbl-btn{aspect-ratio:1;border-radius:50%;border:2px solid var(--gold-deep);background:var(--card2);color:var(--gold);
+  font-family:var(--sans);font-weight:900;font-size:26px;cursor:pointer;max-width:84px;width:100%;margin:0 auto;display:grid;place-items:center}
+.tbl-btn.on{background:var(--gold);border-color:var(--gold);color:#1a140a;box-shadow:0 0 0 4px rgba(226,194,122,.3)}
+.stage{writing-mode:vertical-rl;border:2px solid var(--line);border-radius:10px;font-weight:900;letter-spacing:.3em;
+  font-size:14px;color:var(--gold);display:grid;place-items:center;padding:8px 4px}
+.floor-note{font-size:13px;color:var(--dim);margin-top:10px;text-align:center}
 
-.detail{margin-top:14px;border:1px solid var(--line);background:var(--panel)}
-.detail h3{display:flex;justify-content:space-between;align-items:baseline;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.1em}
-.detail h3 span{font-family:var(--latin);color:var(--gold);font-size:24px}
-.detail ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;padding:6px 0}
-.detail li{display:flex;gap:10px;padding:8px 16px;font-size:15px;align-items:baseline}
-.detail li em{font-style:normal;font-family:var(--latin);color:var(--gold);width:36px;flex:none;font-size:15px}
-.detail li.tbd{color:#76694f;font-size:13px}
-@media (max-width:400px){.detail ol{grid-template-columns:1fr}}
-.detail li.me{background:rgba(201,169,97,.16)}
-.updated{font-size:11px;color:var(--muted);text-align:right;margin-top:8px}
-.locked{border:1px dashed var(--line);padding:22px 16px;text-align:center;font-size:14px;color:var(--muted)}
+.detail{margin-top:12px;padding:0;overflow:hidden}
+.detail[hidden]{display:none}
+.detail h3{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:18px;font-weight:700}
+.detail h3 span{font-weight:900;font-size:28px;color:var(--gold)}
+.detail ol{list-style:none;padding:6px 0}
+.detail li{display:flex;gap:12px;padding:9px 18px;font-size:17px;align-items:baseline}
+.detail li em{font-style:normal;font-weight:900;color:var(--gold);width:44px;flex:none}
+.detail li.me{background:rgba(226,194,122,.22)}
+.locked{border:2px dashed var(--line);border-radius:14px;padding:22px 16px;text-align:center;color:var(--sub)}
 
-/* ---- program ---- */
-.prog{list-style:none;position:relative}
-.prog:before{content:"";position:absolute;left:62px;top:8px;bottom:8px;width:1px;background:var(--line)}
-.prog li{display:flex;gap:26px;padding:10px 0;position:relative}
-.prog time{font-family:var(--latin);font-size:19px;color:var(--gold);width:48px;flex:none;text-align:right;line-height:1.5}
-.prog li:after{content:"";position:absolute;left:59px;top:19px;width:7px;height:7px;background:var(--bg);border:1px solid var(--gold);transform:rotate(45deg)}
-.prog b{font-weight:600;display:block;font-size:16px}
-.prog small{display:block;color:var(--muted);font-size:12px}
-.prog li.now:after{background:var(--gold)}
-.prog li.now b{color:var(--gold)}
-.prog li.done{opacity:.45}
+/* 投票 */
+.vote{text-align:center;border:2px solid var(--gold)}
+.vote .ttl{font-family:var(--mincho);font-weight:800;font-size:21px;word-break:keep-all}
+.vote .sub{font-size:15px;color:var(--sub);margin-top:2px}
+.vote .dl{display:inline-flex;align-items:baseline;gap:8px;margin-top:12px;font-weight:700;color:var(--sub);font-size:15px}
+.vote .dl b{font-weight:900;font-size:36px;color:var(--gold);line-height:1}
+.btn{display:block;margin-top:16px;padding:17px 10px;background:var(--gold);color:#1a140a;text-decoration:none;
+  font-weight:900;font-size:19px;letter-spacing:.08em;border-radius:12px}
+.vote.closed .btn{background:var(--card2);color:var(--dim);pointer-events:none}
 
-/* ---- info ---- */
+/* 流れ */
+.prog{list-style:none}
+.prog li{display:flex;gap:16px;padding:12px 4px;border-bottom:1px solid rgba(226,194,122,.16)}
+.prog li:last-child{border-bottom:0}
+.prog time{font-weight:900;font-size:20px;color:var(--gold);width:58px;flex:none;line-height:1.4}
+.prog b{font-weight:700;font-size:18px;display:block;line-height:1.4}
+.prog small{display:block;color:var(--sub);font-size:14px;margin-top:2px}
+.prog li.now{background:rgba(226,194,122,.18);border-radius:10px;border-bottom-color:transparent;padding-left:10px}
+.prog li.now time,.prog li.now b{color:var(--gold)}
+.prog li.done{opacity:.55}
+
+/* ご案内 */
 .info{display:grid;gap:10px}
-.card{border:1px solid var(--line);background:var(--panel);padding:16px 18px}
-.card h3{font-size:15px;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:4px}
-.card p{font-size:14px}
-.card .s{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:14px;align-items:flex-start}
+.ico{flex:none;width:44px;height:44px;border-radius:12px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center}
+.row h3{font-weight:700;font-size:18px;line-height:1.4}
+.row p{font-size:16px;color:var(--sub);margin-top:2px}
+.row p strong{color:var(--text);font-weight:700}
+.maplink{display:inline-block;margin-top:8px;font-weight:700;font-size:15px;color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold)}
 
-footer{text-align:center;padding:44px 0 56px;font-family:var(--latin);font-style:italic;color:var(--gold-d);font-size:13px;letter-spacing:.14em}
+footer{text-align:center;padding:34px 0 20px;font-family:var(--latin);font-style:italic;color:var(--dim);font-size:15px;letter-spacing:.14em}
+
+/* 下のナビ（親指で押せる位置） */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(15,13,10,.96);backdrop-filter:blur(10px);
+  border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabbar .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.tabbar a{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 9px;text-decoration:none;color:var(--sub);font-size:13px;font-weight:700}
+.tabbar a.on{color:var(--gold)}
+.tabbar svg{width:24px;height:24px}
 </style>
 </head>
 <body>
 
 <header class="hero wrap">
-  <div class="emblem"><i></i></div>
-  <div class="eyebrow">WELCOME</div>
+  <div class="en">Welcome</div>
   <h1>SORTEN<br>Dress Up Party</h1>
-  <div class="sub">in Hilton Nagoya</div>
-  <div class="rule"><b></b></div>
-  <div class="meta">2026.10.25 SUN　18:00 – 20:00<br>ヒルトン名古屋　ONE O FIVE</div>
+  <p>本日はご来場いただき、ありがとうございます</p>
+  <div class="now" id="nowBox" hidden><span class="lbl">いま</span><span class="what" id="nowWhat"></span></div>
 </header>
-
-<nav><div class="wrap">
-  <a href="#vote">投票</a><a href="#seats">席次</a><a href="#program">プログラム</a><a href="#info">ご案内</a>
-</div></nav>
 
 <main class="wrap">
 
-  <section id="vote">
-    <div class="vote" id="voteBox">
-      <div class="en">BEST DRESSER VOTE</div>
-      <h2>ベストドレッサー賞</h2>
-      <p>本日いちばん輝いていた方へ、男女1名ずつ投票</p>
-      <div class="deadline">19:20</div>
-      <p id="voteState">投票締切</p>
-      <a class="btn" id="voteBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfo6JJj5Pk0a9S4k4OAbVZCOb25nUi-PBkWNdtul0Hcg9M0Rg/viewform" target="_blank" rel="noopener">投票フォームを開く</a>
-    </div>
-  </section>
-
   <section id="seats">
-    <div class="sec-head"><div class="en">SEATING</div><h2>席次</h2></div>
+    <div class="h2"><h2>お席をさがす</h2><span>Your Seat</span></div>
     <div id="seatArea"></div>
   </section>
 
+  <section id="vote">
+    <div class="h2"><h2>ベストドレッサー賞</h2><span>Vote</span></div>
+    <div class="card vote" id="voteBox">
+      <div class="ttl">今夜いちばん輝いた方へ</div>
+      <div class="sub">男性・女性 1名ずつに投票してください</div>
+      <div class="dl" id="voteState">締切 <b>19:20</b></div>
+      <a class="btn" id="voteBtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfo6JJj5Pk0a9S4k4OAbVZCOb25nUi-PBkWNdtul0Hcg9M0Rg/viewform" target="_blank" rel="noopener">投票する</a>
+    </div>
+  </section>
+
   <section id="program">
-    <div class="sec-head"><div class="en">PROGRAM</div><h2>本日のプログラム</h2></div>
-    <ol class="prog" id="prog">
-      <li data-t="18:00"><time>18:00</time><div><b>開宴・オープニング</b></div></li>
-      <li data-t="18:05"><time>18:05</time><div><b>主催挨拶・乾杯</b></div></li>
-      <li data-t="18:10"><time>18:10</time><div><b>お食事・ご歓談</b></div></li>
-      <li data-t="18:40"><time>18:40</time><div><b>景品ゲーム</b><small>テーブル対抗　カウントアップ・ぴったりチャレンジ</small></div></li>
-      <li data-t="19:20"><time>19:20</time><div><b>500円じゃんけん大会</b><small>ベストドレッサー賞の投票はここで締切</small></div></li>
-      <li data-t="19:30"><time>19:30</time><div><b>ベストドレッサー賞　発表</b><small>男性部門・女性部門</small></div></li>
-      <li data-t="19:45"><time>19:45</time><div><b>閉会のご挨拶・全体記念撮影</b></div></li>
-      <li data-t="20:00"><time>20:00</time><div><b>お開き</b></div></li>
-      <li data-t="21:00"><time>21:00</time><div><b>二次会</b><small>BAGUS 名古屋栄</small></div></li>
-    </ol>
+    <div class="h2"><h2>本日の流れ</h2><span>Program</span></div>
+    <div class="card">
+      <ol class="prog" id="prog">
+        <li data-t="18:00"><time>18:00</time><div><b>開宴</b></div></li>
+        <li data-t="18:05"><time>18:05</time><div><b>主催挨拶・乾杯</b></div></li>
+        <li data-t="18:10"><time>18:10</time><div><b>お食事・ご歓談</b></div></li>
+        <li data-t="18:40"><time>18:40</time><div><b>景品ゲーム</b><small>テーブル対抗のぴったりチャレンジ</small></div></li>
+        <li data-t="19:20"><time>19:20</time><div><b>500円じゃんけん大会</b><small>ベストドレッサー賞の投票はここで締切</small></div></li>
+        <li data-t="19:30"><time>19:30</time><div><b>ベストドレッサー賞 発表</b></div></li>
+        <li data-t="19:45"><time>19:45</time><div><b>閉会のご挨拶・全体記念撮影</b></div></li>
+        <li data-t="20:00"><time>20:00</time><div><b>お開き</b></div></li>
+        <li data-t="21:00"><time>21:00</time><div><b>二次会</b><small>BAGUS 名古屋栄</small></div></li>
+      </ol>
+    </div>
   </section>
 
   <section id="info">
-    <div class="sec-head"><div class="en">INFORMATION</div><h2>ご案内</h2></div>
-    <div class="info">
-      <div class="card"><h3>写真撮影</h3><p>会場内の撮影はご自由にどうぞ。</p></div>
-      <div class="card"><h3>景品ゲーム</h3><p>テーブル対抗です。同じテーブルの方と、ぜひご歓談を。</p></div>
-      <div class="card"><h3>二次会</h3><p>21:00〜　BAGUS 名古屋栄</p><p class="s">飲み放題・軽食・ダーツ・DJブース</p></div>
-      <div class="card"><h3>お車でお越しの方</h3><p>ヒルトン名古屋 地下駐車場　宴会ご利用で3時間まで無料</p><p class="s">超過は30分ごとに400円／車高2.1mまで</p><p class="s">当日は周辺の道路・駐車場の混雑が予想されます。時間に余裕を持ってお越しください。</p></div>
+    <div class="h2"><h2>ご案内</h2><span>Information</span></div>
+    <div class="card info">
+      <div class="row">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="5" r="2"/><circle cx="17" cy="5" r="2"/><path d="M7 8v13M5 8h4l1 7H4zM17 8v13M15 8h4v7h-4z"/></svg></div>
+        <div><h3>お手洗い</h3><p>会場を出て、<strong>受付の先</strong>（エレベーター側）にあります</p></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l1.5-3h5L16 7"/></svg></div>
+        <div><h3>写真撮影</h3><p>会場内の撮影はご自由にどうぞ</p></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v6M9 21h6"/></svg></div>
+        <div><h3>二次会　21:00〜</h3><p><strong>BAGUS 名古屋栄</strong><br>飲み放題・軽食・ダーツ・DJブース</p>
+          <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=BAGUS+%E5%90%8D%E5%8F%A4%E5%B1%8B%E6%A0%84" target="_blank" rel="noopener">地図をひらく</a></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></div>
+        <div><h3>困ったときは</h3><p>受付スタッフに、お気軽にお声がけください</p></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e2c27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 16l1.5-5h11L19 16M4 16h16v3H4zM7 19v1.5M17 19v1.5"/></svg></div>
+        <div><h3>お車でお越しの方</h3><p>地下駐車場は宴会ご利用で<strong>3時間まで無料</strong>。精算は受付でご確認ください</p></div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<footer>Dress Up Party ／ 2026.10.25</footer>
+<footer>Dress Up Party ／ 2026.10.25 ／ Hilton Nagoya</footer>
+
+<nav class="tabbar"><div class="wrap">
+  <a href="#seats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><circle cx="12" cy="3" r="1.4"/><circle cx="21" cy="12" r="1.4"/><circle cx="12" cy="21" r="1.4"/><circle cx="3" cy="12" r="1.4"/></svg>席</a>
+  <a href="#vote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.8z"/></svg>投票</a>
+  <a href="#program"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>流れ</a>
+  <a href="#info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>案内</a>
+</div></nav>
 
 <script>
-const PAYLOAD = "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";
-const ORDER = ["G","D","A","H","E","B","I","F","C"];   // 会場図どおり（右がステージ）
+const PAYLOAD = "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";
+const ORDER = ["G","D","A","H","E","B","I","F","C"];   // 会場図どおり（右がステージ、左が入口）
 
 /* ---------- 日時（JST） ---------- */
 function jstNow(){ const d=new Date(); return new Date(d.getTime()+(d.getTimezoneOffset()+540)*60000); }
@@ -192,27 +217,33 @@ function mins(t){ const [h,m]=t.split(":").map(Number); return h*60+m; }
 
 function tick(){
   const n=jstNow(), now=n.getHours()*60+n.getMinutes();
-  // 投票：当日19:20を過ぎたら締切表示
-  const closed = (n > new Date(2026,9,25,19,20)) ;
-  const box=document.getElementById("voteBox");
-  box.classList.toggle("closed",closed);
-  document.getElementById("voteState").textContent = closed ? "投票は締め切りました" : "投票締切";
-  document.getElementById("voteBtn").textContent = closed ? "受付終了" : "投票フォームを開く";
-  // プログラム：当日だけ現在地を表示
+  const closed = n > new Date(2026,9,25,19,20);
+  document.getElementById("voteBox").classList.toggle("closed",closed);
+  document.getElementById("voteState").innerHTML = closed ? "投票は締め切りました" : "締切 <b>19:20</b>";
+  document.getElementById("voteBtn").textContent = closed ? "受付終了" : "投票する";
+
   const items=[...document.querySelectorAll("#prog li")];
   items.forEach(li=>li.classList.remove("now","done"));
+  const box=document.getElementById("nowBox");
+  box.hidden=true;
   if(isPartyDay(n)){
     let cur=-1; items.forEach((li,i)=>{ if(now>=mins(li.dataset.t)) cur=i; });
     items.forEach((li,i)=>{ if(i<cur) li.classList.add("done"); if(i===cur) li.classList.add("now"); });
+    if(cur>=0 && now < mins("21:00")){
+      const li=items[cur], nx=items[cur+1];
+      document.getElementById("nowWhat").innerHTML = li.querySelector("b").textContent +
+        (nx ? `<small>つぎは ${nx.dataset.t}「${nx.querySelector("b").textContent}」</small>` : "");
+      box.hidden=false;
+    }
   }
 }
 tick(); setInterval(tick,30000);
 
-/* ---------- タブの現在地 ---------- */
-const links=[...document.querySelectorAll("nav a")];
+/* ---------- 下のナビの現在地 ---------- */
+const links=[...document.querySelectorAll(".tabbar a")];
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting) links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));
-}),{rootMargin:"-45% 0px -50% 0px"});
+}),{rootMargin:"-40% 0px -55% 0px"});
 document.querySelectorAll("main section").forEach(s=>io.observe(s));
 
 /* ---------- 席次（暗号化データをURLの鍵で復号） ---------- */
@@ -226,48 +257,56 @@ async function loadSeats(){
   const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv},key,ct);
   return JSON.parse(new TextDecoder().decode(pt));
 }
-const norm=s=>(s||"").replace(/[\s　]/g,"").toLowerCase();
+const norm=s=>(s||"").replace(/[\s　]/g,"").replace(/髙/g,"高").toLowerCase();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function renderSeats(data){
   area.innerHTML=`
-    <div class="search"><input id="q" type="search" placeholder="お名前で探す（例：松田）" autocomplete="off"></div>
-    <div class="found" id="found"></div>
-    <div class="floor">
-      <div class="floor-top"><span>受付・入口 側</span><span>テーブルをタップ</span></div>
+    <label class="search">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6b604c" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="お名前を入力（例：松田）" autocomplete="off" enterkeyhint="search">
+    </label>
+    <div class="hits" id="hits"></div>
+    <div id="mine"></div>
+    <div class="card floor">
+      <div class="floor-top"><span>← 入口・受付</span><span>テーブルをタップ</span></div>
       <div class="floor-body">
-        <div class="grid">${ORDER.map(t=>`<div class="tbl" data-t="${t}">${t}</div>`).join("")}</div>
+        <div class="grid">${ORDER.map(t=>`<button class="tbl-btn" data-t="${t}" aria-label="テーブル${t}">${t}</button>`).join("")}</div>
         <div class="stage">STAGE</div>
       </div>
     </div>
-    <div class="detail" id="detail" hidden></div>
-    <div class="updated">席次は ${data.updated}。当日変更になる場合があります。</div>`;
+    <div class="card detail" id="detail" hidden></div>
+    <div class="floor-note">席次は ${esc(data.updated)}。当日変更になる場合があります</div>`;
 
-  const T=data.tables, detail=document.getElementById("detail");
+  const T=data.tables, detail=document.getElementById("detail"), mine=document.getElementById("mine");
   function openTable(t,mark){
-    document.querySelectorAll(".tbl").forEach(e=>e.classList.toggle("on",e.dataset.t===t));
+    document.querySelectorAll(".tbl-btn").forEach(e=>e.classList.toggle("on",e.dataset.t===t));
     detail.hidden=false;
     detail.innerHTML=`<h3>テーブル <span>${t}</span></h3><ol>${T[t].map((n,i)=>{
-      const cls = n===null ? "tbd" : (mark===i ? "me" : "");
-      const label = n===null ? "調整中" : (n==="" ? "空席" : n);
-      if(n==="") return "";
-      return `<li class="${cls}"><em>${t}-${i+1}</em>${label}</li>`;}).join("")}</ol>`;
+      if(!n) return "";
+      return `<li class="${mark===i?"me":""}"><em>${t}-${i+1}</em>${esc(n)}</li>`;}).join("")}</ol>`;
   }
-  document.querySelectorAll(".tbl").forEach(e=>e.onclick=()=>{openTable(e.dataset.t);detail.scrollIntoView({behavior:"smooth",block:"nearest"});});
+  function choose(t,i){
+    mine.innerHTML=`<div class="mine"><div class="who">${esc(T[t][i])} 様のお席</div><div class="seat">${t}-${i+1}</div><div class="tbl">テーブル ${t}　${i+1}番</div></div>`;
+    openTable(t,i);
+    mine.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  document.querySelectorAll(".tbl-btn").forEach(e=>e.onclick=()=>{openTable(e.dataset.t);detail.scrollIntoView({behavior:"smooth",block:"nearest"});});
 
-  const q=document.getElementById("q"), found=document.getElementById("found");
+  const q=document.getElementById("q"), hits=document.getElementById("hits");
   q.oninput=()=>{
-    const v=norm(q.value); found.innerHTML="";
+    const v=norm(q.value); hits.innerHTML=""; mine.innerHTML="";
     if(!v) return;
-    const hits=[];
-    for(const t of ORDER) T[t].forEach((n,i)=>{ if(n && norm(n).includes(v)) hits.push({t,i,n}); });
-    if(!hits.length){ found.innerHTML=`<div class="nohit">見つかりませんでした。受付スタッフにお声がけください。</div>`; return; }
-    found.innerHTML=hits.slice(0,8).map(h=>`<div class="hit" data-t="${h.t}" data-i="${h.i}"><b>${h.n}</b><span>${h.t}-${h.i+1}</span></div>`).join("");
-    found.querySelectorAll(".hit").forEach(e=>e.onclick=()=>{openTable(e.dataset.t,+e.dataset.i);detail.scrollIntoView({behavior:"smooth",block:"nearest"});});
-    if(hits.length===1) openTable(hits[0].t,hits[0].i);
+    const found=[];
+    for(const t of ORDER) T[t].forEach((n,i)=>{ if(n && norm(n).includes(v)) found.push({t,i,n}); });
+    if(!found.length){ hits.innerHTML=`<div class="nohit">見つかりませんでした。受付スタッフにお声がけください</div>`; return; }
+    if(found.length===1){ choose(found[0].t,found[0].i); return; }
+    hits.innerHTML=found.slice(0,8).map(h=>`<div class="hit" data-t="${h.t}" data-i="${h.i}"><b>${esc(h.n)}</b><span>${h.t}-${h.i+1}</span></div>`).join("");
+    hits.querySelectorAll(".hit").forEach(e=>e.onclick=()=>{hits.innerHTML="";choose(e.dataset.t,+e.dataset.i);});
   };
 }
 loadSeats().then(renderSeats).catch(()=>{
-  area.innerHTML=`<div class="locked">席次は、受付でお配りしたQRコードから開くと表示されます。</div>`;
+  area.innerHTML=`<div class="locked">席次は、会場のスクリーンに映っているQRコードから開くと表示されます</div>`;
 });
 </script>
 </body>
