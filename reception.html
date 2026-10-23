@@ -95,7 +95,7 @@ function show(r){
   const [cls, big, body] = map[r.status] || map.error;
   view.innerHTML = `<div class="card ${cls}"><div class="big">${big}</div>${body}</div>${pay}
     <div class="hint">次のゲストのQRを、カメラで読み取ってください</div>
-    <div class="staff">受付用の端末として登録済み</div>`;
+    ${key ? `<div class="staff">受付用の端末として登録済み</div>` : ""}`;
 }
 
 function check(token, key){
@@ -110,8 +110,38 @@ function check(token, key){
   document.body.appendChild(s);
 }
 
+// ===== 受付練習モード（PRAC- で始まるQRは台帳に記録せず、この端末の中だけで判定する） =====
+const PRACTICE = {
+  "PRAC-01": {name:"練習　一郎", seat:"A-1", payment:"確定"},
+  "PRAC-02": {name:"練習　花子", seat:"B-3", payment:"確定"},
+  "PRAC-03": {name:"練習　次郎", seat:"C-5", payment:"未入金"},
+  "PRAC-04": {name:"練習　三郎", seat:"",    payment:"キャンセル"},
+  "PRAC-05": {name:"練習　春子", seat:"D-2", payment:"確定"}
+};
+function practice(token){
+  let used = {};
+  try { used = JSON.parse(localStorage.getItem("dup_prac") || "{}"); } catch (e) {}
+  const save = () => { try { localStorage.setItem("dup_prac", JSON.stringify(used)); } catch (e) {} };
+  if (token === "PRAC-RESET") {
+    save(used = {});
+    view.innerHTML = `<div class="card wait"><div class="big">練習リセット</div><div class="note">練習の記録を消しました。最初からやり直せます。</div></div>`;
+    return;
+  }
+  const g = PRACTICE[token];
+  const now = new Date().toLocaleTimeString("ja-JP", {timeZone:"Asia/Tokyo", hour:"2-digit", minute:"2-digit"});
+  let r;
+  if (!g) r = {status:"invalid"};
+  else if (g.payment === "キャンセル") r = Object.assign({status:"cancel"}, g);
+  else if (used[token]) r = Object.assign({status:"used", time:used[token]}, g);
+  else { used[token] = now; save(); r = Object.assign({status:"ok", time:now}, g); }
+  show(r);
+  view.insertAdjacentHTML("afterbegin", `<div class="pay" style="margin:0 0 12px;background:#7d5ba6;color:#fff">練習モード（台帳には記録されません）</div>`);
+}
+
 const token = new URLSearchParams(location.search).get("t");
 const key = staffKey();
+if (token && token.startsWith("PRAC-")) { practice(token); }
+else
 if (!key) guestView();
 else if (!token) view.innerHTML = `<div class="card wait"><div class="big">受付準備OK</div><div class="note">この端末は受付用に登録されました。<br>招待状のQRをカメラで読み取ってください。</div></div>`;
 else check(token, key);
